@@ -44,5 +44,8 @@ If this is not an issue for you, you can use the script normally and then source
 source <Env Name>/bin/activate
 cd <Env Name>
 ```
-For More Info Visit: https://docs.python.org/3/library/venv.html"
-    
+### Asciicast
+[![asciicast](https://asciinema.org/a/593728.svg)](https://asciinema.org/a/593728)
+
+For More Info Visit: https://docs.python.org/3/library/venv.html
+
