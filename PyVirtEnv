@@ -6,7 +6,6 @@
 # Inside It With pip If Specified
 
 # https://github.com/wolandark
-# https://github.com/wolandark/PyEnv/
 # https://github.com/wolandark/BASH_Scripts_For_Everyone
 
 # Help Message
@@ -22,11 +21,15 @@ if [ "$1" = "" -o "$1" = "-h" ]; then
     exit 0
 fi
 
-if [ "$1" = "setup" ] && [ "$0" = "/bin/bash" ]; then
+
+# Setup Argument To Echo The Function To Shellrc
+if [ "$1" = "setup" ] && [ "$SHELL" = "/bin/bash" ]; then
     echo 'PyEnv() { ~/PyVirtEnv "$@"; source "$1/bin/activate"; cd "$1"; }' >> ~/.bashrc
+    exit 0
 else
-    if [ "$1" = "setup" ] && [ "$0" = "/bin/sh" ]; then
+    if [ "$1" = "setup" ] && [ "$SHELL" = "/bin/sh" ]; then
         echo 'PyEnv() { ~/PyVirtEnv "$@"; source "$1/bin/activate"; cd "$1"; }' >> ~/.shrc
+        exit 0
     fi
 fi
 
