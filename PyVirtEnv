@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Written By Woland
+
+# A Script To Make New Python Virtual Enviorments & Install Packages
+# Inside It With pip If Specified
+
+# https://github.com/wolandark
+# https://github.com/wolandark/PyEnv/
+# https://github.com/wolandark/BASH_Scripts_For_Everyone
+
+# Help Message
+if [ "$1" = "" -o "$1" = "-h" ]; then
+    echo -e "\n\t[Usage]: Run the Script With \$1 And If Needed, \$2, \$3 & \$4 etc ..."
+    echo -e "\t       Where \$1 Is The First Argument And The New Virtual Env Name"
+    echo -e "\t       And \$2 ... Is The Name Of An Optional Package/s To Be Installed With pip Into The Virtual Env\n"
+    echo -e "\t[Example]: ./PyVirtEnv NewEnv PyQt5\n"
+    echo -e "\tYou Should Also Place This Script In Your Home Directory"
+    echo -e "\n\t[Setup]: "
+    echo -e "\t       Run The Script With The [setup] As Argument To Setup Your SHELL, SH & BASH Are Supported"
+    echo -e "\nFor More Info Visit: https://docs.python.org/3/library/venv.html"
+    exit 0
+fi
+
+if [ "$1" = "setup" ] && [ "$0" = "/bin/bash" ]; then
+    echo 'PyEnv() { ~/PyVirtEnv "$@"; source "$1/bin/activate"; cd "$1"; }' >> ~/.bashrc
+else
+    if [ "$1" = "setup" ] && [ "$0" = "/bin/sh" ]; then
+        echo 'PyEnv() { ~/PyVirtEnv "$@"; source "$1/bin/activate"; cd "$1"; }' >> ~/.shrc
+    fi
+fi
+
+# Make Directory 
+if [ -d $1 ]; then
+    echo "Directory with this name exists in $PWD"
+    exit 0
+else
+    mkdir $1
+fi
+
+# Setup Python Virtual Env & Source It
+python3 -m venv "$1"
+source "$1"/bin/activate
+
+# Handling Arguments As Packages To Install At Once
+shift
+echo "Installing packages: " "$@"
+pip install "$@"
+
+# Priniting Info For The User
+tput setaf 6; echo -e "\nYou Should run: source "$PWD"/"$1"/bin/activate"
+tput setaf 1; echo -e "Your virtual env at "$PWD"/"$1" is ready for you!\n"
+tput setaf 6; echo "Done!"
+tput sgr0
+
+exit 0
