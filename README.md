@@ -1,6 +1,11 @@
 # PyEnv
 A shell script for quickly and easily making python virtual environments and installing python packages inside it in one go!
 
+## About:
+This handy shell script simplifies the process of setting up isolated Python environments for your projects. By leveraging the power of virtual environments and pip, you can effortlessly manage dependencies and keep your project's packages organized.
+
+With this script, you can quickly create a virtual environment tailored to your project's requirements. Once created, you can activate the environment, ensuring a clean and isolated environment for your Python code.
+
 ### Installation
 Use curl to easily download the script to your home directory (or do it manually)
 ```
